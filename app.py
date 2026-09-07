@@ -21,7 +21,7 @@ st.set_page_config(page_title="Customer Intelligence Tool", page_icon="🧠", la
 # ---------------------------
 # CONFIG
 # ---------------------------
-GROQ_MODEL = "llama-3.1-8b-instant"  # fast + free on Groq; change in secrets if retired
+GROQ_MODEL = "openai/gpt-oss-20b"  # fast + free on Groq; change in secrets if retired
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 
