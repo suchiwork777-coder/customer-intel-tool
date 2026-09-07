@@ -117,7 +117,8 @@ def call_groq(prompt, api_key):
         "model": GROQ_MODEL,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.3,
-        "max_tokens": 700,
+        ""max_tokens": 1500,
+"reasoning_effort": "low",
     }
     resp = requests.post(GROQ_URL, headers=headers, json=payload, timeout=30)
     resp.raise_for_status()
@@ -170,8 +171,11 @@ if generate:
                 prompt = build_prompt(company_name, signals)
                 try:
                     brief = call_groq(prompt, api_key)
-                    st.success(f"Brief generated — {total_signals} signals analyzed")
+                st.success(f"Brief generated — {total_signals} signals analyzed")
+                if brief and brief.strip():
                     st.markdown(brief)
+                else:
+                    st.warning("The AI returned an empty response. Try clicking Generate Brief again.")
                 except Exception as e:
                     st.error(f"AI synthesis failed: {e}")
 
